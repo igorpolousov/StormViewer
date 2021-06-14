@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  Storm Viewer
-//
+//  DAY 17, 100 DAYS WITH SWIFT
 //  Created by Igor Polousov on 11.06.2021.
 //
 
