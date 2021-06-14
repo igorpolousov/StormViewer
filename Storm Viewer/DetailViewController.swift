@@ -8,35 +8,30 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    @IBOutlet var imageView: UIImageView!
-    var selectedImage: String?
+    @IBOutlet var imageView: UIImageView! // Varialble for imageView in IB
+    var selectedImage: String? // Variable optional type if value exists take picture from row from pictures array
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = selectedImage
-        navigationItem.largeTitleDisplayMode = .never
-        
+        title = selectedImage // Make title the same as
+        navigationItem.largeTitleDisplayMode = .never // Make restriction on big letters in title
+    
+        // So that selectedImage is optional make unwrap
         if let imageToLoad = selectedImage {
-            imageView.image = UIImage(named: imageToLoad)
+            imageView.image = UIImage(named: imageToLoad) // If selected image !nil image on imageView = imageToLoad with value selectedImage
         }
     }
+    // Making navigation controller dissapear on tap
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.hidesBarsOnTap = true
     }
+    // making navigation controller appear on tap
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 }
