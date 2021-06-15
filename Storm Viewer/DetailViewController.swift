@@ -11,10 +11,16 @@ class DetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView! // Varialble for imageView in IB
     var selectedImage: String? // Variable optional type if value exists take picture from row from pictures array
     
+    var selectedPictureNumber = 0
+    var totalPictures = 0
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = selectedImage // Make title the same as
+        
+        title = "Picture \(selectedPictureNumber) of \(totalPictures)"
+        //title = selectedImage // Make title the same as
         navigationItem.largeTitleDisplayMode = .never // Make restriction on big letters in title
     
         // So that selectedImage is optional make unwrap
