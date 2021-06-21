@@ -9,6 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView! // Varialble for imageView in IB
+    
     var selectedImage: String? // Variable optional type if value exists take picture from row from pictures array
     
     var selectedPictureNumber = 0
@@ -27,8 +28,8 @@ class DetailViewController: UIViewController {
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad) // If selected image !nil image on imageView = imageToLoad with value selectedImage
         }
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        // Add top right button in navigation panel with system photo .action
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped)) // # is shoing on objc method
     }
     
     // Making navigation controller dissapear on tap
@@ -47,9 +48,11 @@ class DetailViewController: UIViewController {
             print("No image found")
             return
         }
+       
+        let vc = UIActivityViewController(activityItems: [image, "\(selectedImage!)"], applicationActivities: [])
         
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
         present(vc, animated: true)
     }
   

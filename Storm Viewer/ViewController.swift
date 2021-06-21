@@ -29,6 +29,21 @@ class ViewController: UITableViewController {
             }
         }
         print(pictures)
+        
+        // Добавил кнопку в navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(shareApp))
+    }
+    
+    // Метод shareApp()
+    
+    @objc func shareApp() {
+        let appName = "Storm Viewer"
+        
+        let vc = UIActivityViewController(activityItems:[appName], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
+        present(vc, animated: true)
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
