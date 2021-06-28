@@ -1,7 +1,7 @@
 //
 //  DetailViewController.swift
 //  Storm Viewer
-//
+//  Day 22
 //  Created by Igor Polousov on 14.06.2021.
 //
 
