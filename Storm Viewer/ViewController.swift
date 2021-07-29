@@ -18,6 +18,11 @@ class ViewController: UITableViewController {
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true // Make large letters in title
         
+        performSelector(inBackground: #selector(loadNSSLFiles), with: nil)
+        
+    }
+    
+    @objc func loadNSSLFiles() {
         let fm = FileManager.default // Data type let us work with file system, where we're looking for files
         let path = Bundle.main.resourcePath! // Bundle is a derictory that contains compiled files and all assets of our programm
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -28,8 +33,10 @@ class ViewController: UITableViewController {
                 pictures.sort()
             }
         }
+        tableView.performSelector(onMainThread: #selector(tableView.reloadData), with: nil, waitUntilDone: false)
         print(pictures)
     }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count
