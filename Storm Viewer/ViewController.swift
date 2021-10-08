@@ -30,6 +30,16 @@ class ViewController: UITableViewController {
         }
         print(pictures)
         
+        let defaults = UserDefaults.standard
+        
+        if let savedPictures = defaults.object(forKey: "pictures") as? Data {
+            let jsonDecoder = JSONDecoder()
+            do {
+                pictures = try jsonDecoder.decode([Picture].self, from: savedPictures)
+            } catch  {
+                print("Failed to load pictures")
+            }
+        }
         
     }
     
