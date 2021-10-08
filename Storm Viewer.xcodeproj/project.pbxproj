@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C203EE6E2710433B0071C8AE /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C203EE6D2710433B0071C8AE /* Picture.swift */; };
 		C2CF147A26736DCC0059185D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CF147926736DCC0059185D /* AppDelegate.swift */; };
 		C2CF147C26736DCC0059185D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CF147B26736DCC0059185D /* SceneDelegate.swift */; };
 		C2CF147E26736DCC0059185D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CF147D26736DCC0059185D /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C203EE6D2710433B0071C8AE /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		C2CF147626736DCC0059185D /* Storm Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Storm Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2CF147926736DCC0059185D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2CF147B26736DCC0059185D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				C2CF147926736DCC0059185D /* AppDelegate.swift */,
 				C2CF147B26736DCC0059185D /* SceneDelegate.swift */,
 				C2CF147D26736DCC0059185D /* ViewController.swift */,
+				C203EE6D2710433B0071C8AE /* Picture.swift */,
 				C2CF14A226774E190059185D /* DetailViewController.swift */,
 				C2CF147F26736DCC0059185D /* Main.storyboard */,
 				C2CF148226736DCE0059185D /* Assets.xcassets */,
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2CF147E26736DCC0059185D /* ViewController.swift in Sources */,
+				C203EE6E2710433B0071C8AE /* Picture.swift in Sources */,
 				C2CF147A26736DCC0059185D /* AppDelegate.swift in Sources */,
 				C2CF147C26736DCC0059185D /* SceneDelegate.swift in Sources */,
 				C2CF14A326774E190059185D /* DetailViewController.swift in Sources */,

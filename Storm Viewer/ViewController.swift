@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    var pictures = [String]()
-   
+    var pictures = [Picture]()
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,8 +24,10 @@ class ViewController: UITableViewController {
         
         for item in items {
             if item.hasPrefix("nssl"){ // This is a picture to load
-                pictures.append(item)
-                pictures.sort()
+                let picture = Picture(name: item, viewCount: 0)
+                pictures.append(picture)
+//                pictures.append(item)
+//                pictures.sort()
             }
         }
         print(pictures)
@@ -37,14 +39,28 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath)
-        cell.textLabel?.text = pictures[indexPath.row]
+        let picture = pictures[indexPath.row]
+        cell.textLabel?.text = picture.name
+        cell.detailTextLabel?.text = "Times viewed = \(picture.viewCount) "
         return cell
     }
     // Below used "type casting" for vc that allows to use properties from DetailViewController(Type casting allows to use properties of other classes)
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as?  DetailViewController {
-            vc.selectedImage = pictures[indexPath.row]
+            // Добавил константу чтобы можно было получить имя из структуры в массиве
+            let picForShow = pictures[indexPath.row]
+            // Добавил переменную которая будет считать сколько раз нажали на картинку
+            var counters = picForShow.viewCount
+            vc.selectedImage = picForShow.name
+            // Счетчик нажатий
+            counters += 1
+            // Изменение переменной viewCount в структуре согласно indexPath
+            pictures[indexPath.row].viewCount = counters
+            // Перезагрузка данных в таблице чтобы данные сразу отобразились при возворате с картинки на таблицу
+            tableView.reloadData()
+            
+            
             navigationController?.pushViewController(vc, animated: true)
             vc.totalPictures = pictures.count
             vc.selectedPictureNumber = indexPath.row + 1
