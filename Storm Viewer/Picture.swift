@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Picture {
+struct Picture: Codable {
     var name: String
     var viewCount: Int
 }

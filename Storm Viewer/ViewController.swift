@@ -26,11 +26,11 @@ class ViewController: UITableViewController {
             if item.hasPrefix("nssl"){ // This is a picture to load
                 let picture = Picture(name: item, viewCount: 0)
                 pictures.append(picture)
-//                pictures.append(item)
-//                pictures.sort()
             }
         }
         print(pictures)
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +57,8 @@ class ViewController: UITableViewController {
             counters += 1
             // Изменение переменной viewCount в структуре согласно indexPath
             pictures[indexPath.row].viewCount = counters
+            // Сохранили данные
+            save()
             // Перезагрузка данных в таблице чтобы данные сразу отобразились при возворате с картинки на таблицу
             tableView.reloadData()
             
@@ -64,6 +66,16 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
             vc.totalPictures = pictures.count
             vc.selectedPictureNumber = indexPath.row + 1
+        }
+    }
+    
+    func save() {
+        let jsonEncoder = JSONEncoder()
+        if let savedData  = try? jsonEncoder.encode(pictures) {
+            let defaults = UserDefaults.standard
+            defaults.setValue(savedData, forKey: "pictures")
+        } else {
+            print("Failed to save pictures")
         }
     }
     
