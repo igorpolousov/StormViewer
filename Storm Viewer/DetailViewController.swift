@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
         //title = selectedImage // Make title the same as
         navigationItem.largeTitleDisplayMode = .never // Make restriction on big letters in title
     
+        assert(selectedImage != nil, "failure")
+        
         // So that selectedImage is optional make unwrap
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad) // If selected image !nil image on imageView = imageToLoad with value selectedImage
