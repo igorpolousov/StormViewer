@@ -44,17 +44,48 @@ class DetailViewController: UIViewController {
     }
     
     @objc func shareTapped() {
-        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
+        guard let image = imageView.image else {
             print("No image found")
             return
         }
-       
-        let vc = UIActivityViewController(activityItems: [image, "\(selectedImage!)"], applicationActivities: [])
+
+        let watermarkedImage = watermark(image: image)
         
+        var shareable: [Any] = [watermarkedImage]
+        if let imageText = selectedImage {
+            shareable.append(imageText)
+        }
+        
+        let vc = UIActivityViewController(activityItems: shareable, applicationActivities: [])
+        // mandatory on ipad to show where the sharing comes from
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        
         present(vc, animated: true)
     }
-  
 
+    func watermark(image: UIImage) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: image.size)
+        
+        let renderedImage = renderer.image { ctx in
+            image.draw(at: CGPoint(x: 0, y: 0))
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .left
+            let string = "From Storm Viewer"
+
+            let attrs: [NSAttributedString.Key : Any] = [
+                .strokeWidth: -1.0,
+                .strokeColor: UIColor.black,
+                .foregroundColor: UIColor.white,
+                .font: UIFont(name: "HelveticaNeue", size: 36)!,
+                .paragraphStyle: paragraphStyle
+            ]
+            
+            let margin = 32
+            let textWidth = Int(image.size.width) - (margin * 2)
+            let textHeight = Int(image.size.height) - (margin * 2)
+            string.draw(with: CGRect(x: margin, y: margin, width: textWidth, height: textHeight), options: .usesLineFragmentOrigin, attributes: attrs, context: nil)
+        }
+
+        return renderedImage
+    }
 }
